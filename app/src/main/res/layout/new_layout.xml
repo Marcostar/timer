@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark">
+
+
+    <RelativeLayout
+        android:id="@+id/sets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/setLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sets"
+                android:textSize="24sp"
+                android:textColor="@color/textColor"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/setNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:id="@+id/finalSetNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cycleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cycles"
+                android:textSize="24sp"
+                android:textColor="@color/textColor"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cycleNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:id="@+id/finalCycleNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textColor="@color/textColor"
+                    android:textSize="28sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/progressBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sets"
+        android:layout_above="@+id/footerLayout"
+        android:gravity="center">
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/ProgressBar"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:cpb_background_progressbar_color="#FFCDD2"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_progressbar_color="#F44336"
+            app:cpb_progressbar_width="10dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/InnerCirclePlaylayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sets"
+        android:layout_above="@+id/footerLayout"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/playButtonInsideCircle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/ic_play_arrow" />
+
+        <TextView
+            android:id="@+id/showTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Start"
+            android:textSize="18sp"
+            android:textColor="@color/textColor"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/InnerCircleRunninglayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sets"
+        android:layout_above="@+id/footerLayout"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/innerTextIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Start"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/textColor"/>
+
+        <TextView
+            android:id="@+id/innerTimeIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textSize="28sp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/textColor"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/ic_man_running" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/playLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/playPauseStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pause"
+                android:textSize="20sp"
+                android:textColor="@color/textColor"/>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+
+                <ImageButton
+                    android:id="@+id/resumeButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@mipmap/ic_play_arrow"
+                    android:visibility="gone"/>
+
+                <ImageButton
+                    android:id="@+id/pauseButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@mipmap/ic_pause"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/totalTimeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/remainingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remainingTime"
+                android:textSize="18sp"
+                android:textColor="@color/textColor"/>
+
+            <TextView
+                android:id="@+id/timeLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeExample"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/resetLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:textSize="20sp"
+                android:textColor="@color/textColor"/>
+
+
+            <ImageButton
+                android:id="@+id/resetButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@mipmap/ic_reset" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/settingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/pastleGreyColor">
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/ic_setting" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="20sp"
+            android:textColor="@color/textColor" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Timer</string>
+    <string name="sets">Sets</string>
+    <string name="cycles">Cycles</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Reset</string>
+    <string name="remainingTime">Time left</string>
+    <string name="timeExample">12:17</string>
+    <string name="Start">Start</string>
+    <string name="settings">Settings</string>
+    <string name="play">Play</string>
+    <string name="warm_up_time">Warm up time</string>
+    <string name="workout">Workout</string>
+    <string name="rest_time">Rest Time</string>
+    <string name="workout_time">Workout Time</string>
+    <string name="cycle_number">Number of Cycles (tabatas)</string>
+    <string name="rest_between_cycle">Rest between cycles</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="resume">Resume</string>
+    <string name="getReady">Get Ready</string>
+    <string name="exercise">Exercise</string>
+    <string name="rest">Take rest</string>
+    <string name="coolDown">Cool down</string>
+    <string name="done">Done</string>
+</resources>
