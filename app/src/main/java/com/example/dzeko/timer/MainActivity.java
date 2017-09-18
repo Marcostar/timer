@@ -7,8 +7,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
@@ -35,6 +39,7 @@ public class MainActivity extends Activity {
     public static final String WORKOUT_TIME = "workout_time";
     public static final String REST_BETWEEN_CYCLE = "rest_between_cycle";
 
+    private int secondsLeft = 0;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -50,6 +55,8 @@ public class MainActivity extends Activity {
 
     private long remainingTimer, totalCountdownRemainingTimer;
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,8 @@ public class MainActivity extends Activity {
         clickEvents();
 
     }
+
+
 
     @Override
     protected void onResume() {
@@ -137,8 +146,11 @@ public class MainActivity extends Activity {
                 editor.putInt(SAVED_CYCLE_NUMBER, 1).apply();
                 settingLayout.setVisibility(View.GONE);
                 footerLayout.setVisibility(View.VISIBLE);
+
+                //create notification
                 Intent i = new Intent(MainActivity.this, ForegroundServices.class);
                 startService(i);
+
                 countTotalTime();
                 startTimer();
 
@@ -291,15 +303,27 @@ public class MainActivity extends Activity {
         editor.putString(TIME_STATUS,WARM_UP_TIME).apply();
         status.setText(R.string.getReady);
         updateNotification();
-        countDownTimer = new CountDownTimer(totalDuration, 1000) {
+        countDownTimer = new CountDownTimer(totalDuration, 100) {
 
             public void onTick(long millisUntilFinished) {
-                setTime(millisUntilFinished);
+                if (Math.round((float)millisUntilFinished / 1000.0f) != secondsLeft) {
+                    setTime(millisUntilFinished);
+                    secondsLeft = Math.round((float)millisUntilFinished / 1000.0f);
+                    if (secondsLeft < 4)
+                    {
+                        makeSound(R.raw.tick_tock);
+                        vibratePhone();
+                    }
+                }
                 remainingTimer = millisUntilFinished;
+
+
             }
 
             public void onFinish() {
                 //Start excercies
+                minutes.setText("0");
+                seconds.setText("0");
                 if(sharedPreferences.getInt(SAVED_SET_NUMBER,0) <= sharedPreferences.getInt(FINAL_SET_NUMBER,0))
                 {
                     //warm up time
@@ -318,6 +342,8 @@ public class MainActivity extends Activity {
 
     private void startExercise() {
 
+        minutes.setText("0");
+        seconds.setText("0");
         if(sharedPreferences.getInt(SAVED_SET_NUMBER,0) <= sharedPreferences.getInt(FINAL_SET_NUMBER,0))
         {
             updateNotification();
@@ -338,6 +364,11 @@ public class MainActivity extends Activity {
             {
                 //end
                 //reset all if needed
+                minutes.setText("0");
+                seconds.setText("0");
+                makeSound(R.raw.air_horn);
+                footerLayout.setVisibility(View.GONE);
+                settingLayout.setVisibility(View.VISIBLE);
                 status.setText(R.string.done);
                 status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelGreenColor));
                 resetValues();
@@ -350,6 +381,7 @@ public class MainActivity extends Activity {
     }
 
     private void startRestBetweenCycles(long totalDuration) {
+        makeSound(R.raw.air_horn);
         editor.putString(TIME_STATUS,REST_BETWEEN_CYCLE).apply();
         status.setText(R.string.coolDown);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelGreenColor));
@@ -359,16 +391,24 @@ public class MainActivity extends Activity {
             public void onTick(long millisUntilFinished) {
                 setTime(millisUntilFinished);
                 remainingTimer = millisUntilFinished;
+                if (millisUntilFinished < 4000)
+                {
+                    makeSound(R.raw.tick_tock);
+                    vibratePhone();
+                }
             }
 
             public void onFinish() {
                 //Start excercies
+                minutes.setText("0");
+                seconds.setText("0");
                 startTimer();
             }
         }.start();
     }
 
     private void startWorkOutTime(long totalDuration) {
+        makeSound(R.raw.referee_whistle);
         editor.putString(TIME_STATUS,WORKOUT_TIME).apply();
         status.setText(R.string.exercise);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelRedColor));
@@ -378,10 +418,17 @@ public class MainActivity extends Activity {
             public void onTick(long millisUntilFinished) {
                 setTime(millisUntilFinished);
                 remainingTimer = millisUntilFinished;
+                if (millisUntilFinished < 4000)
+                {
+                    makeSound(R.raw.tick_tock);
+                    vibratePhone();
+                }
             }
 
             public void onFinish() {
                 //Rest between sets
+                minutes.setText("0");
+                seconds.setText("0");
                 if (sharedPreferences.getInt(SAVED_SET_NUMBER,0) < sharedPreferences.getInt(FINAL_SET_NUMBER,0))
                 {
                     editor.putInt(SAVED_SET_NUMBER, sharedPreferences.getInt(SAVED_SET_NUMBER,0) + 1).apply();
@@ -397,6 +444,7 @@ public class MainActivity extends Activity {
     }
 
     private void startRestBetweenSets(long totalDuration) {
+        makeSound(R.raw.air_horn);
         editor.putString(TIME_STATUS,REST_TIME).apply();
         status.setText(R.string.rest);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelGreenColor));
@@ -404,6 +452,11 @@ public class MainActivity extends Activity {
         countDownTimer = new CountDownTimer(totalDuration, 1000) {
 
             public void onTick(long millisUntilFinished) {
+                if (millisUntilFinished < 4000)
+                {
+                    makeSound(R.raw.tick_tock);
+                    vibratePhone();
+                }
                 setTime(millisUntilFinished);
                 remainingTimer = millisUntilFinished;
             }
@@ -411,6 +464,7 @@ public class MainActivity extends Activity {
             public void onFinish() {
                 //Rest between sets
                 //editor.putInt(SAVED_SET_NUMBER, sharedPreferences.getInt(SAVED_SET_NUMBER,0) + 1).apply();
+
                 startExercise();
                 updateNotification();
             }
@@ -418,6 +472,7 @@ public class MainActivity extends Activity {
 
 
     }
+
 
     private void updateNotification() {
 
@@ -434,9 +489,9 @@ public class MainActivity extends Activity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             notification = new Notification.Builder(this, "Exercise")
                     .setContentTitle(getText(R.string.app_name))
-                    .setContentText(status.getText().toString()+" Sets "+ sharedPreferences.getInt(SAVED_SET_NUMBER,0) +"/"+
+                    .setContentText(status.getText().toString()+" Sets "+ setNumber.getText().toString() +"/"+
                             sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
-                            +"Cycles "+ sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) +"/"
+                            +"Cycles "+ cycleNumber.getText().toString()  +"/"
                             + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
@@ -447,9 +502,9 @@ public class MainActivity extends Activity {
         {
             notification = new NotificationCompat.Builder(this)
                     .setContentTitle(getText(R.string.app_name))
-                    .setContentText(status.getText().toString()+" Sets "+ sharedPreferences.getInt(SAVED_SET_NUMBER,0) +"/"+
+                    .setContentText(status.getText().toString()+" Sets "+ setNumber.getText().toString() +"/"+
                             sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
-                            +"Cycles "+ sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) +"/"
+                            +"Cycles "+ cycleNumber.getText().toString() +"/"
                             + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
@@ -461,6 +516,47 @@ public class MainActivity extends Activity {
         mNotificationManager.notify(
                 24392,
                 notification);
+
+    }
+
+    private void makeSound(int resource_id) {
+
+        mediaPlayer = null;
+        switch (resource_id)
+        {
+            case R.raw.air_horn:
+                mediaPlayer = MediaPlayer.create(this, R.raw.air_horn);
+                break;
+
+            case R.raw.referee_whistle:
+                mediaPlayer = MediaPlayer.create(this, R.raw.referee_whistle);
+                break;
+
+            case R.raw.tick_tock:
+                mediaPlayer = MediaPlayer.create(this, R.raw.tick_tock);
+                break;
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.reset();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+        });
+
+        mediaPlayer.start();
+
+    }
+
+    private void vibratePhone() {
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(150,10));
+        } else {
+            ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
+        }
 
     }
 }
