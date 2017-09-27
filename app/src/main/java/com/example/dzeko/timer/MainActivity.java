@@ -258,6 +258,7 @@ public class MainActivity extends Activity {
 
     private void startTimer()
     {
+
         editor.putInt(SAVED_SET_NUMBER,1).apply();
         if(sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) <= sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
         {
@@ -303,6 +304,7 @@ public class MainActivity extends Activity {
         editor.putString(TIME_STATUS,WARM_UP_TIME).apply();
         status.setText(R.string.getReady);
         updateNotification();
+        secondsLeft = 0;
         countDownTimer = new CountDownTimer(totalDuration, 100) {
 
             public void onTick(long millisUntilFinished) {
@@ -342,13 +344,12 @@ public class MainActivity extends Activity {
 
     private void startExercise() {
 
-        minutes.setText("0");
-        seconds.setText("0");
         if(sharedPreferences.getInt(SAVED_SET_NUMBER,0) <= sharedPreferences.getInt(FINAL_SET_NUMBER,0))
         {
             updateNotification();
             //Exercise time
             setNumber.setText(sharedPreferences.getInt(SAVED_SET_NUMBER,0)+"");
+            makeSound(R.raw.referee_whistle);
             startWorkOutTime(sharedPreferences.getInt(WORKOUT_TIME,0)*1000);
         }
         else
@@ -358,6 +359,7 @@ public class MainActivity extends Activity {
             {
                 updateNotification();
                 cycleNumber.setText(sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0)+"");
+                makeSound(R.raw.air_horn);
                 startRestBetweenCycles(sharedPreferences.getInt(REST_BETWEEN_CYCLE,0)*1000);
             }
             else
@@ -381,21 +383,25 @@ public class MainActivity extends Activity {
     }
 
     private void startRestBetweenCycles(long totalDuration) {
-        makeSound(R.raw.air_horn);
+
         editor.putString(TIME_STATUS,REST_BETWEEN_CYCLE).apply();
         status.setText(R.string.coolDown);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelGreenColor));
         updateNotification();
-        countDownTimer = new CountDownTimer(totalDuration, 1000) {
+        secondsLeft = 0;
+        countDownTimer = new CountDownTimer(totalDuration, 100) {
 
             public void onTick(long millisUntilFinished) {
-                setTime(millisUntilFinished);
-                remainingTimer = millisUntilFinished;
-                if (millisUntilFinished < 4000)
-                {
-                    makeSound(R.raw.tick_tock);
-                    vibratePhone();
+                if (Math.round((float)millisUntilFinished / 1000.0f) != secondsLeft) {
+                    setTime(millisUntilFinished);
+                    secondsLeft = Math.round((float)millisUntilFinished / 1000.0f);
+                    if (secondsLeft < 4)
+                    {
+                        makeSound(R.raw.tick_tock);
+                        vibratePhone();
+                    }
                 }
+                remainingTimer = millisUntilFinished;
             }
 
             public void onFinish() {
@@ -408,21 +414,25 @@ public class MainActivity extends Activity {
     }
 
     private void startWorkOutTime(long totalDuration) {
-        makeSound(R.raw.referee_whistle);
+
         editor.putString(TIME_STATUS,WORKOUT_TIME).apply();
         status.setText(R.string.exercise);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelRedColor));
         updateNotification();
-        countDownTimer = new CountDownTimer(totalDuration, 1000) {
+        secondsLeft = 0;
+        countDownTimer = new CountDownTimer(totalDuration, 100) {
 
             public void onTick(long millisUntilFinished) {
-                setTime(millisUntilFinished);
-                remainingTimer = millisUntilFinished;
-                if (millisUntilFinished < 4000)
-                {
-                    makeSound(R.raw.tick_tock);
-                    vibratePhone();
+                if (Math.round((float)millisUntilFinished / 1000.0f) != secondsLeft) {
+                    setTime(millisUntilFinished);
+                    secondsLeft = Math.round((float)millisUntilFinished / 1000.0f);
+                    if (secondsLeft < 4)
+                    {
+                        makeSound(R.raw.tick_tock);
+                        vibratePhone();
+                    }
                 }
+                remainingTimer = millisUntilFinished;
             }
 
             public void onFinish() {
@@ -432,6 +442,7 @@ public class MainActivity extends Activity {
                 if (sharedPreferences.getInt(SAVED_SET_NUMBER,0) < sharedPreferences.getInt(FINAL_SET_NUMBER,0))
                 {
                     editor.putInt(SAVED_SET_NUMBER, sharedPreferences.getInt(SAVED_SET_NUMBER,0) + 1).apply();
+                    makeSound(R.raw.air_horn);
                     startRestBetweenSets(sharedPreferences.getInt(REST_TIME,0)*1000);
                 }
                 else if (sharedPreferences.getInt(SAVED_SET_NUMBER,0) == sharedPreferences.getInt(FINAL_SET_NUMBER,0))
@@ -444,27 +455,31 @@ public class MainActivity extends Activity {
     }
 
     private void startRestBetweenSets(long totalDuration) {
-        makeSound(R.raw.air_horn);
         editor.putString(TIME_STATUS,REST_TIME).apply();
         status.setText(R.string.rest);
         status.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.pastelGreenColor));
         updateNotification();
-        countDownTimer = new CountDownTimer(totalDuration, 1000) {
+        secondsLeft = 0;
+        countDownTimer = new CountDownTimer(totalDuration, 100) {
 
             public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished < 4000)
-                {
-                    makeSound(R.raw.tick_tock);
-                    vibratePhone();
+                if (Math.round((float)millisUntilFinished / 1000.0f) != secondsLeft) {
+                    setTime(millisUntilFinished);
+                    secondsLeft = Math.round((float)millisUntilFinished / 1000.0f);
+                    if (secondsLeft < 4)
+                    {
+                        makeSound(R.raw.tick_tock);
+                        vibratePhone();
+                    }
                 }
-                setTime(millisUntilFinished);
                 remainingTimer = millisUntilFinished;
             }
 
             public void onFinish() {
                 //Rest between sets
                 //editor.putInt(SAVED_SET_NUMBER, sharedPreferences.getInt(SAVED_SET_NUMBER,0) + 1).apply();
-
+                minutes.setText("0");
+                seconds.setText("0");
                 startExercise();
                 updateNotification();
             }
