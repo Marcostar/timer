@@ -1,4 +1,4 @@
-package com.sagycorp.fitbeats.Models;
+package com.sagycorp.fitbeatsP.Models;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

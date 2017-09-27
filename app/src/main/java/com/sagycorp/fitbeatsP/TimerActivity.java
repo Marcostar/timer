@@ -1,4 +1,4 @@
-package com.sagycorp.fitbeats;
+package com.sagycorp.fitbeatsP;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -20,7 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sagycorp.fitbeats.Services.ForegroundServices;
+import com.sagycorp.fitbeatsP.Services.ForegroundServices;
 
 import java.util.concurrent.TimeUnit;
 
@@ -529,7 +529,7 @@ public class TimerActivity extends Activity {
 
         //startForeground(24392, notification);
         mNotificationManager.notify(
-                24392,
+                24393,
                 notification);
 
     }

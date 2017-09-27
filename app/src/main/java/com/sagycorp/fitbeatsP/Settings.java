@@ -1,4 +1,4 @@
-package com.sagycorp.fitbeats;
+package com.sagycorp.fitbeatsP;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 public class Settings extends AppCompatActivity {
 

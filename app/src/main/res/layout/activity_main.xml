@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="4dp"
-    tools:context="com.sagycorp.fitbeats.TimerActivity"
+    tools:context="com.sagycorp.fitbeatsP.TimerActivity"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:weightSum="3">

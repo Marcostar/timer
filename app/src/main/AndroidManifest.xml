@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sagycorp.fitbeats">
+    package="com.sagycorp.fitbeatsP">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
 
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sagycorp.fitbeats.TimerActivity"
+        <activity android:name="com.sagycorp.fitbeatsP.TimerActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sagycorp.fitbeats.Settings" />
+        <activity android:name="com.sagycorp.fitbeatsP.Settings" />
 
         <service
-            android:name="com.sagycorp.fitbeats.Services.ForegroundServices"
+            android:name="com.sagycorp.fitbeatsP.Services.ForegroundServices"
             android:enabled="true"
             android:exported="true"/>
     </application>
