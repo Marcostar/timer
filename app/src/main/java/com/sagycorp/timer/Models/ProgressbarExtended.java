@@ -1,4 +1,4 @@
-package com.example.dzeko.timer.Models;
+package com.sagycorp.timer.Models;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

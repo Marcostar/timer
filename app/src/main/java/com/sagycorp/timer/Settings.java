@@ -1,4 +1,4 @@
-package com.example.dzeko.timer;
+package com.sagycorp.timer;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,14 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import static com.example.dzeko.timer.MainActivity.FINAL_CYCLE_NUMBER;
-import static com.example.dzeko.timer.MainActivity.FINAL_SET_NUMBER;
-import static com.example.dzeko.timer.MainActivity.MyPREFERENCES;
-import static com.example.dzeko.timer.MainActivity.REST_BETWEEN_CYCLE;
-import static com.example.dzeko.timer.MainActivity.REST_TIME;
-import static com.example.dzeko.timer.MainActivity.WARM_UP_TIME;
-import static com.example.dzeko.timer.MainActivity.WORKOUT_TIME;
 
 public class Settings extends AppCompatActivity {
 
@@ -40,7 +32,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(TimerActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         initialiseLayout();
 
@@ -70,12 +62,12 @@ public class Settings extends AppCompatActivity {
         cycleLayout = (LinearLayout) findViewById(R.id.cycleLayout);
         restBetweenCycleLayout = (LinearLayout) findViewById(R.id.restBetweenCycleLayout);
 
-        sets.setText(sharedPreferences.getInt(MainActivity.FINAL_SET_NUMBER,0)+"");
-        warmUpTimeText.setText(sharedPreferences.getInt(MainActivity.WARM_UP_TIME,0)+"");
-        restTimeText.setText(sharedPreferences.getInt(MainActivity.REST_TIME,0)+"");
-        workout_time_text.setText(sharedPreferences.getInt(MainActivity.WORKOUT_TIME, 0)+"");
-        cycle_text.setText(sharedPreferences.getInt(MainActivity.FINAL_CYCLE_NUMBER,0)+"");
-        sofa_text.setText(sharedPreferences.getInt(MainActivity.REST_BETWEEN_CYCLE,0)+"");
+        sets.setText(sharedPreferences.getInt(TimerActivity.FINAL_SET_NUMBER,0)+"");
+        warmUpTimeText.setText(sharedPreferences.getInt(TimerActivity.WARM_UP_TIME,0)+"");
+        restTimeText.setText(sharedPreferences.getInt(TimerActivity.REST_TIME,0)+"");
+        workout_time_text.setText(sharedPreferences.getInt(TimerActivity.WORKOUT_TIME, 0)+"");
+        cycle_text.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,0)+"");
+        sofa_text.setText(sharedPreferences.getInt(TimerActivity.REST_BETWEEN_CYCLE,0)+"");
     }
 
 
@@ -274,22 +266,22 @@ public class Settings extends AppCompatActivity {
                     switch (iconID)
                     {
                         case R.mipmap.ic_replay:
-                            edt.setText(sharedPreferences.getInt(MainActivity.FINAL_SET_NUMBER,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.FINAL_SET_NUMBER,0)+"");
                             break;
                         case R.mipmap.ic_man_running:
-                            edt.setText(sharedPreferences.getInt(MainActivity.WARM_UP_TIME,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.WARM_UP_TIME,0)+"");
                             break;
                         case R.mipmap.ic_man_rest:
-                            edt.setText(sharedPreferences.getInt(MainActivity.REST_TIME,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.REST_TIME,0)+"");
                             break;
                         case R.mipmap.ic_fitness:
-                            edt.setText(sharedPreferences.getInt(MainActivity.WORKOUT_TIME,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.WORKOUT_TIME,0)+"");
                             break;
                         case R.mipmap.ic_cycles:
-                            edt.setText(sharedPreferences.getInt(MainActivity.FINAL_CYCLE_NUMBER,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,0)+"");
                             break;
                         case R.mipmap.ic_sofa:
-                            edt.setText(sharedPreferences.getInt(MainActivity.REST_BETWEEN_CYCLE,0)+"");
+                            edt.setText(sharedPreferences.getInt(TimerActivity.REST_BETWEEN_CYCLE,0)+"");
                             break;
                     }
                 }
@@ -298,28 +290,28 @@ public class Settings extends AppCompatActivity {
                     switch (iconID)
                     {
                         case R.mipmap.ic_replay:
-                            editor.putInt(FINAL_SET_NUMBER,Integer.parseInt(edt.getText().toString())).apply();
+                            editor.putInt(TimerActivity.FINAL_SET_NUMBER,Integer.parseInt(edt.getText().toString())).apply();
                             sets.setText(edt.getText().toString());
                             break;
                         case R.mipmap.ic_man_running:
-                            editor.putInt(WARM_UP_TIME,Integer.parseInt(edt.getText().toString())).apply();
+                            editor.putInt(TimerActivity.WARM_UP_TIME,Integer.parseInt(edt.getText().toString())).apply();
                             warmUpTimeText.setText(edt.getText().toString());
                             break;
                         case R.mipmap.ic_man_rest:
-                            editor.putInt(REST_TIME,Integer.parseInt(edt.getText().toString())).apply();
-                            restTimeText.setText(sharedPreferences.getInt(MainActivity.REST_TIME,0)+"");
+                            editor.putInt(TimerActivity.REST_TIME,Integer.parseInt(edt.getText().toString())).apply();
+                            restTimeText.setText(sharedPreferences.getInt(TimerActivity.REST_TIME,0)+"");
                             break;
                         case R.mipmap.ic_fitness:
-                            editor.putInt(WORKOUT_TIME,Integer.parseInt(edt.getText().toString())).apply();
-                            workout_time_text.setText(sharedPreferences.getInt(MainActivity.WORKOUT_TIME,0)+"");
+                            editor.putInt(TimerActivity.WORKOUT_TIME,Integer.parseInt(edt.getText().toString())).apply();
+                            workout_time_text.setText(sharedPreferences.getInt(TimerActivity.WORKOUT_TIME,0)+"");
                             break;
                         case R.mipmap.ic_cycles:
-                            editor.putInt(FINAL_CYCLE_NUMBER,Integer.parseInt(edt.getText().toString())).apply();
-                            cycle_text.setText(sharedPreferences.getInt(MainActivity.FINAL_CYCLE_NUMBER,0)+"");
+                            editor.putInt(TimerActivity.FINAL_CYCLE_NUMBER,Integer.parseInt(edt.getText().toString())).apply();
+                            cycle_text.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,0)+"");
                             break;
                         case R.mipmap.ic_sofa:
-                            editor.putInt(REST_BETWEEN_CYCLE,Integer.parseInt(edt.getText().toString())).apply();
-                            sofa_text.setText(sharedPreferences.getInt(MainActivity.REST_BETWEEN_CYCLE,0)+"");
+                            editor.putInt(TimerActivity.REST_BETWEEN_CYCLE,Integer.parseInt(edt.getText().toString())).apply();
+                            sofa_text.setText(sharedPreferences.getInt(TimerActivity.REST_BETWEEN_CYCLE,0)+"");
                             break;
                     }
                 }

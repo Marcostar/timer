@@ -1,4 +1,4 @@
-package com.example.dzeko.timer.Services;
+package com.sagycorp.timer.Services;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -8,14 +8,14 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
 
-import com.example.dzeko.timer.MainActivity;
-import com.example.dzeko.timer.R;
+import com.sagycorp.timer.R;
+import com.sagycorp.timer.TimerActivity;
 
-import static com.example.dzeko.timer.MainActivity.FINAL_CYCLE_NUMBER;
-import static com.example.dzeko.timer.MainActivity.FINAL_SET_NUMBER;
-import static com.example.dzeko.timer.MainActivity.MyPREFERENCES;
-import static com.example.dzeko.timer.MainActivity.SAVED_CYCLE_NUMBER;
-import static com.example.dzeko.timer.MainActivity.SAVED_SET_NUMBER;
+import static com.sagycorp.timer.TimerActivity.FINAL_CYCLE_NUMBER;
+import static com.sagycorp.timer.TimerActivity.FINAL_SET_NUMBER;
+import static com.sagycorp.timer.TimerActivity.MyPREFERENCES;
+import static com.sagycorp.timer.TimerActivity.SAVED_CYCLE_NUMBER;
+import static com.sagycorp.timer.TimerActivity.SAVED_SET_NUMBER;
 
 public class ForegroundServices extends Service {
 
@@ -34,7 +34,7 @@ public class ForegroundServices extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //startForeground(24392,//notification);
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, TimerActivity.class);
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, 0);
 

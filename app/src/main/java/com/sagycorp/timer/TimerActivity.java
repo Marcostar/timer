@@ -1,4 +1,4 @@
-package com.example.dzeko.timer;
+package com.sagycorp.timer;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -20,11 +20,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.dzeko.timer.Services.ForegroundServices;
+import com.sagycorp.timer.Services.ForegroundServices;
 
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends Activity {
+public class TimerActivity extends Activity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String TIME_STATUS = "time_status";
@@ -122,11 +122,11 @@ public class MainActivity extends Activity {
         footerLayout = findViewById(R.id.footerLayout);
 
         setNumber.setText("0");
-        finalSetNumber.setText(sharedPreferences.getInt(MainActivity.FINAL_SET_NUMBER,0)+"");
+        finalSetNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_SET_NUMBER,0)+"");
 
         cycleNumber.setText("1");
         editor.putInt(SAVED_CYCLE_NUMBER, sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) + 1).apply();
-        finalCycleNumber.setText(sharedPreferences.getInt(MainActivity.FINAL_CYCLE_NUMBER,0)+"");
+        finalCycleNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,0)+"");
     }
 
     private void clickEvents() {
@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
                 footerLayout.setVisibility(View.VISIBLE);
 
                 //create notification
-                Intent i = new Intent(MainActivity.this, ForegroundServices.class);
+                Intent i = new Intent(TimerActivity.this, ForegroundServices.class);
                 startService(i);
 
                 countTotalTime();
@@ -168,7 +168,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //start settings activity
-                Intent intent = new Intent(MainActivity.this, Settings.class);
+                Intent intent = new Intent(TimerActivity.this, Settings.class);
                 startActivity(intent);
             }
         });
@@ -494,7 +494,7 @@ public class MainActivity extends Activity {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, TimerActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
