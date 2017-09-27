@@ -1,4 +1,4 @@
-package com.sagycorp.timer;
+package com.sagycorp.fitbeats;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -20,7 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sagycorp.timer.Services.ForegroundServices;
+import com.sagycorp.fitbeats.Services.ForegroundServices;
 
 import java.util.concurrent.TimeUnit;
 

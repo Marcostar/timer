@@ -1,4 +1,4 @@
-package com.sagycorp.timer.Services;
+package com.sagycorp.fitbeats.Services;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -8,14 +8,14 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
 
-import com.sagycorp.timer.R;
-import com.sagycorp.timer.TimerActivity;
+import com.sagycorp.fitbeats.R;
+import com.sagycorp.fitbeats.TimerActivity;
 
-import static com.sagycorp.timer.TimerActivity.FINAL_CYCLE_NUMBER;
-import static com.sagycorp.timer.TimerActivity.FINAL_SET_NUMBER;
-import static com.sagycorp.timer.TimerActivity.MyPREFERENCES;
-import static com.sagycorp.timer.TimerActivity.SAVED_CYCLE_NUMBER;
-import static com.sagycorp.timer.TimerActivity.SAVED_SET_NUMBER;
+import static com.sagycorp.fitbeats.TimerActivity.FINAL_CYCLE_NUMBER;
+import static com.sagycorp.fitbeats.TimerActivity.FINAL_SET_NUMBER;
+import static com.sagycorp.fitbeats.TimerActivity.MyPREFERENCES;
+import static com.sagycorp.fitbeats.TimerActivity.SAVED_CYCLE_NUMBER;
+import static com.sagycorp.fitbeats.TimerActivity.SAVED_SET_NUMBER;
 
 public class ForegroundServices extends Service {
 

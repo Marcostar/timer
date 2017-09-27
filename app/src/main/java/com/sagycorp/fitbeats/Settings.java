@@ -1,4 +1,4 @@
-package com.sagycorp.timer;
+package com.sagycorp.fitbeats;
 
 import android.content.Context;
 import android.content.DialogInterface;

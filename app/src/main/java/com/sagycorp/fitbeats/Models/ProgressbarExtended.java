@@ -1,4 +1,4 @@
-package com.sagycorp.timer.Models;
+package com.sagycorp.fitbeats.Models;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
