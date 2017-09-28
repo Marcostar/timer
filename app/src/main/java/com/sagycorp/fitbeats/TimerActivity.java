@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
 import com.sagycorp.fitbeats.Services.ForegroundServices;
 
 import java.util.concurrent.TimeUnit;
@@ -62,10 +63,13 @@ public class TimerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Appodeal.initialize(this, getString(R.string.appdeal), Appodeal.BANNER| Appodeal.INTERSTITIAL | Appodeal.MREC);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         initialiseLayout();
         clickEvents();
+        Appodeal.setTesting(true);
+        Appodeal.show(this, Appodeal.BANNER_TOP);
 
     }
 
@@ -75,6 +79,7 @@ public class TimerActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        Appodeal.onResume(this, Appodeal.BANNER);
         if (sharedPreferences.getBoolean("firstTime", true))
         {
             editor.putInt(FINAL_SET_NUMBER, 8);
@@ -204,6 +209,7 @@ public class TimerActivity extends Activity {
             public void onClick(View view) {
                 //pause timer
                 playLayout.performClick();
+                Appodeal.show(TimerActivity.this, Appodeal.MREC);
             }
         });
 
@@ -366,6 +372,7 @@ public class TimerActivity extends Activity {
             {
                 //end
                 //reset all if needed
+                Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
                 minutes.setText("0");
                 seconds.setText("0");
                 makeSound(R.raw.air_horn);

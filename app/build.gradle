@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -24,8 +25,25 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    compile files('libs/applovin-7.3.2.jar')
+    compile files('libs/appodeal-2.1.4.jar')
+    compile files('libs/chartboost-6.6.3.jar')
+    compile files('libs/flurry-analytics-7.0.0.jar')
+    compile files('libs/inmobi-6.2.3.jar')
+    compile files('libs/mailru-4.6.17.jar')
+    compile files('libs/startapp-3.6.2.jar')
+    compile files('libs/flurry-ads-7.0.0.jar')
+    compile files('libs/ogury-2.1.15.jar')
+    compile files('libs/unity_ads-2.1.0.jar')
+    compile files('libs/yandex-metrica-2.73.jar')
+    compile project(':adcolony-sdk-3.1.2')
+    compile project(':mmedia-6.4.0')
+
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.mikhaellopez:circularprogressbar:1.1.1'
+    compile 'com.google.android.gms:play-services-ads:11.0.2'
+    compile 'com.google.android.gms:play-services-analytics:11.0.2'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
 }
