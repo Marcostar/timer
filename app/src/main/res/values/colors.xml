@@ -3,10 +3,12 @@
     <color name="colorPrimary">#303030</color>
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#FE5820</color>
-    <color name="progressBarColor">#000000</color>
+    <color name="black">#000000</color>
     <color name="backgroundProgressBarColor">#fffddd</color>
     <color name="textColor">#f7f4d2</color>
     <color name="pastleGreyColor">#7A7677</color>
     <color name="pastelRedColor">#ff6961</color>
     <color name="pastelGreenColor">#77dd77</color>
+    <color name="pastelBlack">#121212</color>
+    <color name="grey">#424242</color>
 </resources>

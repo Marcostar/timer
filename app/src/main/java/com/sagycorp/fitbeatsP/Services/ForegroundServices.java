@@ -42,26 +42,24 @@ public class ForegroundServices extends Service {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             notification = new Notification.Builder(this, "Exercise")
                     .setContentTitle(getText(R.string.app_name))
-                    .setContentText("Sets"+ sharedPreferences.getInt(SAVED_SET_NUMBER,0) +"/"+
-                            sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
+                    .setContentText(" Sets "+ sharedPreferences.getInt(SAVED_SET_NUMBER,0) +"/"+
+                            sharedPreferences.getInt(FINAL_SET_NUMBER,8)+" "
                             +"Cycles "+ sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) +"/"
-                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
+                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
-                    .setTicker("Nothing much")
                     .build();
         }
         else
         {
             notification = new NotificationCompat.Builder(this)
                     .setContentTitle(getText(R.string.app_name))
-                    .setContentText("Sets"+ sharedPreferences.getInt(SAVED_SET_NUMBER,0) +"/"+
-                            sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
+                    .setContentText("Sets "+ sharedPreferences.getInt(SAVED_SET_NUMBER,1) +"/"+
+                            sharedPreferences.getInt(FINAL_SET_NUMBER,8)+" "
                             +"Cycles "+ sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) +"/"
-                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
+                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
-                    .setTicker("Nothing much")
                     .build();
         }
 

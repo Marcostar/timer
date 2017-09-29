@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitBeats Pro</string>
+    <string name="app_name">Fit Beats Pro</string>
     <string name="sets">Sets</string>
     <string name="cycles">Cycles</string>
     <string name="pause">Pause</string>
@@ -23,4 +23,8 @@
     <string name="rest">Take rest</string>
     <string name="coolDown">Cool down</string>
     <string name="done">Done</string>
+    <string name="resetTimer">Reset</string>
+    <string name="sure">Are you sure you want to reset?</string>
+    <string name="exit_app">Exit?</string>
+    <string name="exit_app_msg">Are you sure you want to stop the workout?</string>
 </resources>
