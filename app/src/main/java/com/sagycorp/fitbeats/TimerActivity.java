@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -14,6 +15,7 @@ import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.ImageButton;
@@ -99,6 +101,8 @@ public class TimerActivity extends Activity {
         countDownTimer.cancel();
         setNumber.setText("0");
         cycleNumber.setText("1");
+        minutes.setText("0");
+        seconds.setText("0");
         editor.putInt(SAVED_SET_NUMBER, 0);
         editor.putInt(SAVED_CYCLE_NUMBER, 1).apply();
     }
@@ -127,11 +131,11 @@ public class TimerActivity extends Activity {
         footerLayout = findViewById(R.id.footerLayout);
 
         setNumber.setText("0");
-        finalSetNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_SET_NUMBER,0)+"");
+        finalSetNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_SET_NUMBER,8)+"");
 
         cycleNumber.setText("1");
         editor.putInt(SAVED_CYCLE_NUMBER, sharedPreferences.getInt(SAVED_CYCLE_NUMBER,0) + 1).apply();
-        finalCycleNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,0)+"");
+        finalCycleNumber.setText(sharedPreferences.getInt(TimerActivity.FINAL_CYCLE_NUMBER,1)+"");
     }
 
     private void clickEvents() {
@@ -189,9 +193,9 @@ public class TimerActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //Reset the clock
-                settingLayout.setVisibility(View.VISIBLE);
-                footerLayout.setVisibility(View.GONE);
-                resetValues();
+
+                createResetDialog();
+
             }
         });
 
@@ -512,12 +516,11 @@ public class TimerActivity extends Activity {
             notification = new Notification.Builder(this, "Exercise")
                     .setContentTitle(getText(R.string.app_name))
                     .setContentText(status.getText().toString()+" Sets "+ setNumber.getText().toString() +"/"+
-                            sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
+                            sharedPreferences.getInt(FINAL_SET_NUMBER,8)+" "
                             +"Cycles "+ cycleNumber.getText().toString()  +"/"
-                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
+                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
-                    .setTicker("Nothing much")
                     .build();
         }
         else
@@ -525,12 +528,11 @@ public class TimerActivity extends Activity {
             notification = new NotificationCompat.Builder(this)
                     .setContentTitle(getText(R.string.app_name))
                     .setContentText(status.getText().toString()+" Sets "+ setNumber.getText().toString() +"/"+
-                            sharedPreferences.getInt(FINAL_SET_NUMBER,0)+" "
+                            sharedPreferences.getInt(FINAL_SET_NUMBER,8)+" "
                             +"Cycles "+ cycleNumber.getText().toString() +"/"
-                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
+                            + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
-                    .setTicker("Nothing much")
                     .build();
         }
 
@@ -581,5 +583,60 @@ public class TimerActivity extends Activity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        createExitDialog();
+        super.onBackPressed();
+    }
+
+    private void createExitDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.MyAlertDialogTheme);
+        dialogBuilder.setTitle(getString(R.string.exit_app));
+        dialogBuilder.setMessage(getString(R.string.exit_app_msg));
+        dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
+                finish();
+            }
+        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).show();
+
+    }
+
+    private void createResetDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this, R.style.MyAlertDialogTheme);
+        dialogBuilder.setTitle(getString(R.string.resetTimer));
+        dialogBuilder.setIcon(R.mipmap.ic_reset);
+        dialogBuilder.setMessage(getString(R.string.sure));
+        dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                playPauseStatus.setText(R.string.pause);
+                resumeButton.setVisibility(View.GONE);
+                pauseButton.setVisibility(View.VISIBLE);
+
+                Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
+                settingLayout.setVisibility(View.VISIBLE);
+                footerLayout.setVisibility(View.GONE);
+
+                resetValues();
+            }
+        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).show();
+
+    }
+
 }
 

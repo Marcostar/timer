@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
+
 public class Settings extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
@@ -70,6 +72,11 @@ public class Settings extends AppCompatActivity {
         sofa_text.setText(sharedPreferences.getInt(TimerActivity.REST_BETWEEN_CYCLE,0)+"");
     }
 
+    @Override
+    public void onBackPressed() {
+        Appodeal.show(Settings.this, Appodeal.INTERSTITIAL);
+        super.onBackPressed();
+    }
 
     private void clickListner() {
 
@@ -90,6 +97,7 @@ public class Settings extends AppCompatActivity {
         initialExcerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Appodeal.show(Settings.this, Appodeal.INTERSTITIAL);
                 finish();
             }
         });
