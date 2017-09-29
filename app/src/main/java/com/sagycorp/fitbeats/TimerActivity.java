@@ -588,7 +588,6 @@ public class TimerActivity extends Activity {
     public void onBackPressed() {
 
         createExitDialog();
-        super.onBackPressed();
     }
 
     private void createExitDialog() {
@@ -598,8 +597,8 @@ public class TimerActivity extends Activity {
         dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-               Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
                 finish();
+                Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
