@@ -60,7 +60,6 @@ public class ForegroundServices extends Service {
                             + sharedPreferences.getInt(FINAL_CYCLE_NUMBER,0))
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setContentIntent(pendingIntent)
-                    .setTicker("Nothing much")
                     .build();
         }
 
