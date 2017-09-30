@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.sagycorp.fitbeats"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -27,23 +27,37 @@ dependencies {
     })
 
     compile files('libs/applovin-7.3.2.jar')
+    compile files('libs/appnext-2.0.3.459.jar')
     compile files('libs/appodeal-2.1.4.jar')
+    compile files('libs/avocarrot-3.8.2.jar')
     compile files('libs/chartboost-6.6.3.jar')
+    compile files('libs/dagger-2.7.jar')
+    compile files('libs/eventbus-2.2.1.jar')
+    compile files('libs/facebook-4.25.0.jar')
+    compile files('libs/flurry-ads-7.0.0.jar')
     compile files('libs/flurry-analytics-7.0.0.jar')
     compile files('libs/inmobi-6.2.3.jar')
+    compile files('libs/ironsource-6.6.2.1.jar')
+    compile files('libs/javax.inject-1.jar')
     compile files('libs/mailru-4.6.17.jar')
-    compile files('libs/startapp-3.6.2.jar')
-    compile files('libs/flurry-ads-7.0.0.jar')
     compile files('libs/ogury-2.1.15.jar')
+    compile files('libs/rxjava-1.2.0.jar')
+    compile files('libs/startapp-3.6.2.jar')
+    compile files('libs/tapjoy-11.11.0.jar')
     compile files('libs/unity_ads-2.1.0.jar')
+    compile files('libs/vungle-sdk-android-5.1.0.jar')
     compile files('libs/yandex-metrica-2.73.jar')
+    compile files('libs/yandex-mobileads-2.60.jar')
     compile project(':adcolony-sdk-3.1.2')
     compile project(':mmedia-6.4.0')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
+
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.android.gms:play-services-ads:11.0.2'
-    compile 'com.google.android.gms:play-services-analytics:11.0.2'
+    compile 'com.google.android.gms:play-services-ads:11.0.4'
+    compile 'com.google.android.gms:play-services-analytics:11.0.4'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
 }

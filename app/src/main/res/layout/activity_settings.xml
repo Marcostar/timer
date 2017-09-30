@@ -381,7 +381,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@color/pastleGreyColor">
+            android:background="@color/grey">
 
             <ImageButton
                 android:id="@+id/exerciseButton"

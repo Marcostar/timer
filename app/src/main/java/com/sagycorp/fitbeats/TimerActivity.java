@@ -94,6 +94,11 @@ public class TimerActivity extends Activity {
          //change values here
             editor.putBoolean("firstTime", false).apply();
         }
+        else
+        {
+            finalSetNumber.setText(sharedPreferences.getInt(FINAL_SET_NUMBER,8)+"");
+            finalCycleNumber.setText(sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1)+"");
+        }
     }
 
     private void resetValues() {
@@ -153,6 +158,8 @@ public class TimerActivity extends Activity {
                 //start the countdown
                 editor.putInt(SAVED_SET_NUMBER, 0);
                 editor.putInt(SAVED_CYCLE_NUMBER, 1).apply();
+                finalSetNumber.setText(sharedPreferences.getInt(FINAL_SET_NUMBER,8)+"");
+                finalCycleNumber.setText(sharedPreferences.getInt(FINAL_CYCLE_NUMBER,1)+"");
                 settingLayout.setVisibility(View.GONE);
                 footerLayout.setVisibility(View.VISIBLE);
 
@@ -597,6 +604,9 @@ public class TimerActivity extends Activity {
         dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Intent stopIntent = new Intent(TimerActivity.this, ForegroundServices.class);
+                stopService(stopIntent);
+                resetValues();
                 finish();
                 Appodeal.show(TimerActivity.this, Appodeal.INTERSTITIAL);
             }

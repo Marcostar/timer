@@ -71,6 +71,8 @@ public class ForegroundServices extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        stopForeground(true);
+        stopSelf();
     }
 
     @Override

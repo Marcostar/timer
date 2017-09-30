@@ -9,4 +9,5 @@
     <color name="pastleGreyColor">#7A7677</color>
     <color name="pastelRedColor">#ff6961</color>
     <color name="pastelGreenColor">#77dd77</color>
+    <color name="grey">#424242</color>
 </resources>
