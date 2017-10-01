@@ -595,6 +595,9 @@ public class TimerActivity extends Activity {
         dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Intent stopIntent = new Intent(TimerActivity.this, ForegroundServices.class);
+                stopService(stopIntent);
+                resetValues();
                 finish();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
