@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1039186991634",
+    "firebase_url": "https://fit-beats.firebaseio.com",
+    "project_id": "fit-beats",
+    "storage_bucket": "fit-beats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039186991634:android:c45a8ebeb624f827",
+        "android_client_info": {
+          "package_name": "com.sagycorp.fitbeats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039186991634-2un67h8jqk5kr6qkk9mlcp19ospd2d9s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sagycorp.fitbeats",
+            "certificate_hash": "854eee8d7a14694d6c71bff3a023f236b8d14e56"
+          }
+        },
+        {
+          "client_id": "1039186991634-9tcnpm955ecsmvghsv9ses0dm173a633.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4VYERPKNxSmPAxUjqectlF4Z-m8mJ9oo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039186991634-9tcnpm955ecsmvghsv9ses0dm173a633.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

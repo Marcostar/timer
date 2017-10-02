@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appodeal.ads.Appodeal;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.sagycorp.fitbeats.Services.ForegroundServices;
 
 import java.util.concurrent.TimeUnit;
@@ -60,17 +61,20 @@ public class TimerActivity extends Activity {
 
     private MediaPlayer mediaPlayer;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Appodeal.initialize(this, getString(R.string.appdeal), Appodeal.BANNER| Appodeal.INTERSTITIAL | Appodeal.MREC);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         initialiseLayout();
         clickEvents();
-        Appodeal.setTesting(true);
+        //Appodeal.setTesting(true);
         Appodeal.show(this, Appodeal.BANNER_TOP);
 
     }
