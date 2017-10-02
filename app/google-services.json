@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "125218842795",
+    "firebase_url": "https://fit-beats-pro.firebaseio.com",
+    "project_id": "fit-beats-pro",
+    "storage_bucket": "fit-beats-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125218842795:android:e5ac6bdcd230f6cc",
+        "android_client_info": {
+          "package_name": "com.sagycorp.fitbeatsP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125218842795-5prqf9qgfkbt41gat12b5c039tiandaq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sagycorp.fitbeatsP",
+            "certificate_hash": "854eee8d7a14694d6c71bff3a023f236b8d14e56"
+          }
+        },
+        {
+          "client_id": "125218842795-35hkkeeqikahr9c76ecrg4g1n814b3jq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL-3X0uj_X4GNmAE40rs9z3zM4ZwJxCec"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125218842795-35hkkeeqikahr9c76ecrg4g1n814b3jq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
